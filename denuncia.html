@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Formulário de Denúncia</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header>
+    <h1>Formulário de Denúncia</h1>
+  </header>
+
+  <main>
+    <form action=""https://formspree.io/f/xpwdeyjk"" method="POST" enctype="multipart/form-data">
+      <label for="descricao">Descrição do problema:</label>
+      <textarea name="descricao" id="descricao" required></textarea>
+
+      <label for="local">Local (rua, bairro):</label>
+      <input type="text" name="local" id="local" required />
+
+      <label for="foto">Foto (opcional):</label>
+      <input type="file" name="foto" accept="image/*" />
+
+      <button type="submit">Enviar Denúncia</button>
+    </form>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Prefeitura Municipal</p>
+  </footer>
+</body>
+</html>
