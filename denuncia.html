@@ -3,32 +3,28 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Formulário de Denúncia</title>
+  <title>Denuncie o Descarte Irregular de Lixo</title>
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
+
   <header>
-    <h1>Formulário de Denúncia</h1>
+    <div class="logo">
+      <h1>Denúncia de Descarte Irregular</h1>
+    </div>
   </header>
 
   <main>
-    <!-- Corrigi o atributo action do formulário -->
-    <form action="https://formspree.io/f/xpwdeyjk" method="POST" enctype="multipart/form-data">
-      <label for="descricao">Descrição do problema:</label>
-      <textarea name="descricao" id="descricao" required></textarea>
-
-      <label for="local">Local (rua, bairro):</label>
-      <input type="text" name="local" id="local" required />
-
-      <label for="foto">Foto (opcional):</label>
-      <input type="file" name="foto" accept="image/*" />
-
-      <button type="submit">Enviar Denúncia</button>
-    </form>
+    <section class="intro">
+      <p>Ajude a manter nossa cidade limpa! Faça sua denúncia de forma simples e anônima.</p>
+      <p>É fácil e rápido. Clique abaixo para acessar o formulário de denúncia.</p>
+      <a href="https://forms.gle/SEU_LINK_DO_FORMULARIO" target="_blank" class="botao">Fazer Denúncia</a>
+    </section>
   </main>
 
   <footer>
     <p>&copy; 2025 Prefeitura Municipal</p>
   </footer>
+
 </body>
 </html>
