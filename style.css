@@ -63,8 +63,8 @@ header h1 {
 footer {
   background-color: #2d2d2d; /* Cor escura para o rodapé */
   color: white;
-  padding: 15px 0;
-  text-align: right;
+  padding: 40px 0;
+  text-align: center;
   font-size: 0.9em;
   margin-top: 40px;
 }
@@ -93,4 +93,32 @@ footer {
   .intro {
     padding: 30px 15px; /* Ajusta o padding da seção de introdução */
   }
+}
+
+form {
+  margin-top: 30px;
+  text-align: left;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+label {
+  font-weight: bold;
+  color: #3b9a59;
+}
+
+input[type="text"],
+textarea {
+  width: 100%;
+  padding: 12px;
+  margin-top: 8px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  box-sizing: border-box;
+  resize: vertical;
+}
+
+textarea {
+  min-height: 100px;
 }

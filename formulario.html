@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Formulário de Denúncia</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .erro {
+      color: red;
+      font-weight: bold;
+      margin-top: 5px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Formulário de Denúncia</h1>
+  </header>
+
+  <main>
+    <section class="intro">
+      <p>Preencha os dados abaixo para relatar um descarte irregular. Não é necessário se identificar.</p>
+      
+      <form action="https://formspree.io/f/xpwdeyjk" method="POST" id="denunciaForm">
+        
+        <label for="local">Local ou endereço do descarte:</label>
+        <input type="text" id="local" name="local" placeholder="Ex: Rua das Palmeiras, nº 300" required />
+
+        <label for="descricao">Descrição (máximo 20 palavras):</label>
+        <textarea id="descricao" name="descricao" rows="4" placeholder="Conte mais detalhes se quiser..."></textarea>
+        <div id="erroDescricao" class="erro" style="display:none;">Limite de 20 palavras ultrapassado!</div>
+        
+        <br>
+        <button type="submit" class="botao">Enviar Denúncia</button>
+      </form>
+
+      <br><br>
+      <a href="index.html" class="botao">Voltar para a Página Inicial</a>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Prefeitura Municipal de Paulo Afonso</p>
+  </footer>
+
+  <!-- Google Maps Places API -->
+  <script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCfyaYQFQvZ4ojWa_G6evfesnByh9Jp0gY&libraries=places&callback=initAutocomplete"
+    async defer></script>
+
+  <script>
+    function initAutocomplete() {
+      const input = document.getElementById('local');
+
+      // Limites maiores para toda Paulo Afonso (BA)
+      const pauloAfonsoBounds = new google.maps.LatLngBounds(
+        new google.maps.LatLng(-9.48, -38.33), // sudoeste
+        new google.maps.LatLng(-9.32, -38.10)  // nordeste
+      );
+
+      const options = {
+        bounds: pauloAfonsoBounds,
+        strictBounds: true,
+        componentRestrictions: { country: 'br' },
+        types: ['address']
+      };
+
+      new google.maps.places.Autocomplete(input, options);
+    }
+
+    const descricao = document.getElementById('descricao');
+    const erroDescricao = document.getElementById('erroDescricao');
+    const form = document.getElementById('denunciaForm');
+
+    descricao.addEventListener('input', () => {
+      const words = descricao.value.trim().split(/\s+/);
+      erroDescricao.style.display = words.length > 20 ? 'block' : 'none';
+    });
+
+    form.addEventListener('submit', (e) => {
+      const words = descricao.value.trim().split(/\s+/);
+      if (words.length > 20) {
+        e.preventDefault();
+        erroDescricao.style.display = 'block';
+        descricao.focus();
+      }
+    });
+  </script>
+
+</body>
+</html>
