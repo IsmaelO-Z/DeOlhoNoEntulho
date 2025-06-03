@@ -49,28 +49,30 @@
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCfyaYQFQvZ4ojWa_G6evfesnByh9Jp0gY&libraries=places"></script>
 
   <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      // Validação da descrição
-      const descricao = document.getElementById('descricao');
-      const erroDescricao = document.getElementById('erroDescricao');
-      const form = document.getElementById('denunciaForm');
+  document.addEventListener("DOMContentLoaded", () => {
+    const descricao = document.getElementById('descricao');
+    const erroDescricao = document.getElementById('erroDescricao');
+    const form = document.getElementById('denunciaForm');
 
-      descricao.addEventListener('input', () => {
-        const words = descricao.value.trim().split(/\s+/);
-        erroDescricao.style.display = words.length > 20 ? 'block' : 'none';
-      });
+    descricao.addEventListener('input', () => {
+      const words = descricao.value.trim().split(/\s+/);
+      erroDescricao.style.display = words.length > 20 ? 'block' : 'none';
+    });
 
-      form.addEventListener('submit', (e) => {
-        const words = descricao.value.trim().split(/\s+/);
-        if (words.length > 20) {
-          e.preventDefault();
-          erroDescricao.style.display = 'block';
-          descricao.focus();
-        }
-      });
+    form.addEventListener('submit', (e) => {
+      const words = descricao.value.trim().split(/\s+/);
+      if (words.length > 20) {
+        e.preventDefault();
+        erroDescricao.style.display = 'block';
+        descricao.focus();
+      }
+    });
 
-      // Inicialização do autocomplete do Google
-      function initAutocomplete() {
+    // Aguarda o carregamento da API do Google
+    const waitForGoogleMaps = setInterval(() => {
+      if (typeof google !== "undefined" && google.maps && google.maps.places) {
+        clearInterval(waitForGoogleMaps);
+
         const input = document.getElementById('local');
         if (!input) return;
 
@@ -81,17 +83,15 @@
 
         const options = {
           bounds: pauloAfonsoBounds,
-          strictBounds: true,
+          strictBounds: false, // ✅ liberado para digitar em qualquer situação
           componentRestrictions: { country: 'br' },
           types: ['address']
         };
 
         new google.maps.places.Autocomplete(input, options);
       }
-
-      // Chamar autocomplete após o DOM carregar
-      initAutocomplete();
-    });
-  </script>
+    }, 100);
+  });
+</script>
 </body>
 </html>
