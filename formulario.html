@@ -49,49 +49,49 @@
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCfyaYQFQvZ4ojWa_G6evfesnByh9Jp0gY&libraries=places"></script>
 
   <script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const descricao = document.getElementById('descricao');
-    const erroDescricao = document.getElementById('erroDescricao');
-    const form = document.getElementById('denunciaForm');
+    document.addEventListener("DOMContentLoaded", () => {
+      const descricao = document.getElementById('descricao');
+      const erroDescricao = document.getElementById('erroDescricao');
+      const form = document.getElementById('denunciaForm');
 
-    descricao.addEventListener('input', () => {
-      const words = descricao.value.trim().split(/\s+/);
-      erroDescricao.style.display = words.length > 20 ? 'block' : 'none';
+      descricao.addEventListener('input', () => {
+        const words = descricao.value.trim().split(/\s+/);
+        erroDescricao.style.display = words.length > 20 ? 'block' : 'none';
+      });
+
+      form.addEventListener('submit', (e) => {
+        const words = descricao.value.trim().split(/\s+/);
+        if (words.length > 20) {
+          e.preventDefault();
+          erroDescricao.style.display = 'block';
+          descricao.focus();
+        }
+      });
+
+      // Aguarda o carregamento da API do Google
+      const waitForGoogleMaps = setInterval(() => {
+        if (typeof google !== "undefined" && google.maps && google.maps.places) {
+          clearInterval(waitForGoogleMaps);
+
+          const input = document.getElementById('local');
+          if (!input) return;
+
+          const pauloAfonsoBounds = new google.maps.LatLngBounds(
+            new google.maps.LatLng(-9.48, -38.33),
+            new google.maps.LatLng(-9.32, -38.10)
+          );
+
+          const options = {
+            bounds: pauloAfonsoBounds,
+            strictBounds: false,
+            componentRestrictions: { country: 'br' },
+            types: ['geocode'] // ✅ Aqui é a mudança que evita travar o campo
+          };
+
+          new google.maps.places.Autocomplete(input, options);
+        }
+      }, 100);
     });
-
-    form.addEventListener('submit', (e) => {
-      const words = descricao.value.trim().split(/\s+/);
-      if (words.length > 20) {
-        e.preventDefault();
-        erroDescricao.style.display = 'block';
-        descricao.focus();
-      }
-    });
-
-    // Aguarda o carregamento da API do Google
-    const waitForGoogleMaps = setInterval(() => {
-      if (typeof google !== "undefined" && google.maps && google.maps.places) {
-        clearInterval(waitForGoogleMaps);
-
-        const input = document.getElementById('local');
-        if (!input) return;
-
-        const pauloAfonsoBounds = new google.maps.LatLngBounds(
-          new google.maps.LatLng(-9.48, -38.33),
-          new google.maps.LatLng(-9.32, -38.10)
-        );
-
-        const options = {
-          bounds: pauloAfonsoBounds,
-          strictBounds: false, // ✅ liberado para digitar em qualquer situação
-          componentRestrictions: { country: 'br' },
-          types: ['address']
-        };
-
-        new google.maps.places.Autocomplete(input, options);
-      }
-    }, 100);
-  });
-</script>
+  </script>
 </body>
 </html>
