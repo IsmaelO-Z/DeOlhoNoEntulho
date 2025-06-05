@@ -45,9 +45,6 @@
     <p>&copy; 2025 Prefeitura Municipal de Paulo Afonso</p>
   </footer>
 
-  <!-- Google Maps API -->
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCfyaYQFQvZ4ojWa_G6evfesnByh9Jp0gY&libraries=places"></script>
-
   <script>
     document.addEventListener("DOMContentLoaded", () => {
       const descricao = document.getElementById('descricao');
@@ -67,26 +64,6 @@
           descricao.focus();
         }
       });
-
-      // Espera a API carregar para iniciar o Autocomplete
-      const waitForGoogle = setInterval(() => {
-        if (typeof google !== "undefined" && google.maps && google.maps.places) {
-          clearInterval(waitForGoogle);
-
-          const input = document.getElementById('local');
-          const bounds = new google.maps.LatLngBounds(
-            new google.maps.LatLng(-9.48, -38.33),
-            new google.maps.LatLng(-9.32, -38.10)
-          );
-
-          new google.maps.places.Autocomplete(input, {
-            bounds: bounds,
-            strictBounds: false, // ← Permite digitação livre
-            componentRestrictions: { country: 'br' },
-            types: ['geocode']
-          });
-        }
-      }, 100);
     });
   </script>
 </body>
