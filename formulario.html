@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Formulário de Denúncia</title>
+  <title>Relatar um descarte irregular</title>
   <link rel="stylesheet" href="style.css" />
   <style>
     .erro {
@@ -15,12 +15,13 @@
 </head>
 <body>
   <header>
-    <h1>Formulário de Denúncia</h1>
+    <h1>Relatar um descarte irregular🗑️</h1>
   </header>
 
   <main>
     <section class="intro">
-      <p>Preencha os dados abaixo para relatar um descarte irregular. Não é necessário se identificar.</p>
+      <p>Preencha os dados abaixo para Informar sobre um local que precisa de atenção. 
+        (OBS) Seu relato é anônimo e as informações serão usadas com responsabilidade..</p>
 
       <form action="https://formspree.io/f/xpwdeyjk" method="POST" id="denunciaForm">
         <input type="hidden" name="_redirect" value="enviada.html">
@@ -28,12 +29,12 @@
         <label for="local">Local ou endereço do descarte:</label>
         <input type="text" id="local" name="local" placeholder="Ex: Rua das Palmeiras, nº 300" required />
 
-        <label for="descricao">Descreva o tipo de lixo, quantidade e há quanto tempo está no local (máx. 20 palavras):</label>
+        <label for="descricao">Conte um pouco sobre o que foi descartado e há quanto tempo está lá (máx. 20 palavras):</label>
         <textarea id="descricao" name="descricao" rows="4" placeholder="Conte mais detalhes se quiser..."></textarea>
-        <div id="erroDescricao" class="erro" style="display:none;">Limite de 20 palavras ultrapassado!</div>
+        <div id="erroDescricao" class="erro" style="display:none;">Ops! Tente ser mais breve (até 20 palavras, por favor).</div>
 
         <br>
-        <button type="submit" class="botao">Enviar Denúncia</button>
+        <button type="submit" class="botao">Enviar relato</button>
       </form>
 
       <br><br>
