@@ -30,10 +30,14 @@
         <input type="text" id="local" name="local" placeholder="Ex: Rua das Palmeiras, nº 300" required />
 
         <label for="descricao">Conte um pouco sobre o que foi descartado e há quanto tempo está lá (máx. 20 palavras):</label>
-        <textarea id="descricao" name="descricao" rows="4" placeholder="Conte mais detalhes se quiser..."></textarea>
+        <textarea id="descricao" name="descricao" rows="4" placeholder="Conte mais detalhes relevantes:"></textarea>
         <div id="erroDescricao" class="erro" style="display:none;">Ops! Tente ser mais breve (até 20 palavras, por favor).</div>
 
+        <!-- CAMPO DE FOTO -->
+        <label for="foto">Envie uma foto do local (opcional):</label>
+        <input type="file" id="foto" name="foto" accept="image/*">
         <br>
+
         <button type="submit" class="botao">Enviar relato</button>
       </form>
 
@@ -43,7 +47,7 @@
   </main>
 
   <footer>
-    <p>&copy; 2025 Prefeitura Municipal de Paulo Afonso</p>
+    <p>&copy; 2025 Projeto Bahia Limpa</p>
   </footer>
 
   <script>
