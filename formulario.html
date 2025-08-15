@@ -23,7 +23,7 @@
       <p>Preencha os dados abaixo para Informar sobre um local que precisa de atenção. 
         (OBS) Seu relato é anônimo e as informações serão usadas com responsabilidade..</p>
 
-      <form action="https://formspree.io/f/xpwdeyjk" method="POST" id="denunciaForm">
+      <form id="denunciaForm">
         <input type="hidden" name="_redirect" value="enviada.html">
 
         <label for="local">Local ou endereço do descarte:</label>
@@ -50,26 +50,7 @@
     <p>&copy; 2025 Projeto Bahia Limpa</p>
   </footer>
 
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const descricao = document.getElementById('descricao');
-      const erroDescricao = document.getElementById('erroDescricao');
-      const form = document.getElementById('denunciaForm');
-
-      descricao.addEventListener('input', () => {
-        const words = descricao.value.trim().split(/\s+/);
-        erroDescricao.style.display = words.length > 20 ? 'block' : 'none';
-      });
-
-      form.addEventListener('submit', (e) => {
-        const words = descricao.value.trim().split(/\s+/);
-        if (words.length > 20) {
-          e.preventDefault();
-          erroDescricao.style.display = 'block';
-          descricao.focus();
-        }
-      });
-    });
+  <script src="script.js">
   </script>
 </body>
 </html>
